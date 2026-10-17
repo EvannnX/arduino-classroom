@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.classroom.pid
+.classroom.log
+test-results/
+.DS_Store
+verification.txt
+.env
+.env.*
+!.env.example
