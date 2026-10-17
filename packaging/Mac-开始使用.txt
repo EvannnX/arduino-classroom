@@ -1,0 +1,26 @@
+Arduino 中文课堂 · Mac 一键版
+
+1. 在“关于本机”查看芯片，下载对应 Apple-Silicon 或 Intel ZIP。
+2. 双击 ZIP 解压。将“Arduino 中文课堂.app”拖到“应用程序”文件夹，再双击打开。
+3. 浏览器自动打开准备页面。第一次会解包板卡工具，稍等即可进入课堂。
+4. USB 数据线连接 Arduino。在课堂页面选择开发板和串口，然后上传。
+5. 打开串口监视器即可查看真实数据。停止服务时双击下载包内的“停止课堂.command”。关闭浏览器不会停止后台服务。
+
+不用安装 Node.js、npm、Arduino IDE 或 Arduino CLI，也不用输入启动命令。
+板卡核心和 Servo 库已包含，正常启动不需要联网。
+支持 macOS 11+；Uno R3、经典 Nano、Mega 2560。Mac 打包程序未经过 Apple 公证。
+
+第一次打开被系统拦截怎么办？
+本应用没有 Apple 开发者签名。尝试打开后，到“系统设置 → 隐私与安全性”找到本应用，点击“仍要打开”，再确认。
+不同 macOS 版本的提示可能不同；不要关闭整个系统的安全保护。
+Apple 芯片 Mac：官方 AVR 编译器为 Intel 版本。如果缺少 Rosetta，课堂会打开 Apple 的安装命令窗口，请阅读并确认许可。安装后重新打开课堂。这个步骤需要联网。
+
+USB 与上传
+请使用能传数据的 USB 线。关闭 Arduino IDE 等软件的串口监视器。部分第三方板卡使用 CH340 等芯片，可能需要厂家对应的 macOS 驱动。
+Nano 上传失败可尝试界面的旧引导程序选项。上传会替换开发板当前程序。
+上传与串口都在这台 Mac 上运行，GitHub 网页不会连接你的开发板。
+
+日志和本地工具位置：~/Library/Application Support/ArduinoClassroom/
+清除此文件夹前先停止课堂；下次启动会重新解包工具。学习进度保存在浏览器中，请用课堂里的“保存项目”下载备份。
+
+源码及后续下载：https://github.com/EvannnX/arduino-classroom

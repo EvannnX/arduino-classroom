@@ -13,7 +13,19 @@
 
 支持 **Uno R3、经典 Nano（含旧引导程序）、Mega 2560**。接线图以 Uno R3 为例。
 
-## 安装与运行
+## Mac 一键版（推荐给上课使用）
+
+前往 **[下载最新 Mac 版](https://github.com/EvannnX/arduino-classroom/releases/latest)**，根据“关于本机”里的芯片选择 Apple-Silicon 或 Intel ZIP。
+
+1. 解压 ZIP，把 **Arduino 中文课堂.app** 拖到“应用程序”文件夹，双击打开。
+2. 浏览器会自动显示准备页面，首次解包完成后进入课堂。
+3. 用 USB 数据线连接 Arduino，选择开发板和串口，即可上传并查看串口输出。
+
+下载包包含 Node.js、Arduino CLI、AVR 核心与 Servo 库，无需另装 Node / npm / Arduino IDE，正常启动无需联网。支持 macOS 11+。停止服务请双击包内的 `停止课堂.command`；关闭浏览器不会停止服务。
+
+应用尚未取得 Apple 开发者签名与公证。首次被拦截时，在“系统设置 → 隐私与安全性”中选择“仍要打开”。Apple 芯片 Mac 若没有 Rosetta，启动页会引导安装 Apple Rosetta（需要联网并确认许可），安装后重新打开。部分第三方板卡仍可能需要其 USB 串口驱动。
+
+## 从源码安装与运行
 
 这是在自己电脑上运行的应用。GitHub 保存源码；GitHub Pages 无法运行本项目所需的本地 Arduino CLI 和串口服务。
 
@@ -62,3 +74,15 @@ npm test
 真实烧录、串口收发和物理电路仍需实物验证。接线动画是独立教学演示，实际设备数据在串口监视器中查看。
 
 ![按钮接线步骤](按钮接线图.jpg)
+
+## 构建 Mac 下载包
+
+在 macOS 构建机准备 Python 3.12+、Node/npm，以及 Rosetta（构建 Intel 包时使用），执行：
+
+```sh
+python3 packaging/build-mac.py
+node packaging/smoke-mac.mjs releases/Arduino-Classroom-1.0.1-Apple-Silicon.zip
+node packaging/smoke-mac.mjs releases/Arduino-Classroom-1.0.1-Intel.zip
+```
+
+脚本验证官方 Node / Arduino CLI 的 SHA-256，独立下载 AVR 核心与 Servo 库，生成两个架构的应用与 ZIP；不复制构建者的 Arduino IDE 配置。产物在 `releases/`，不纳入 Git。包内工具首次复制到用户的 `~/Library/Application Support/ArduinoClassroom/`，日志也在该目录。

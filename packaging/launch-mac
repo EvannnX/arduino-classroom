@@ -1,0 +1,13 @@
+#!/bin/zsh
+set -eu
+CLASSROOM_RESOURCES="${0:A:h:h}/Resources"
+CLASSROOM_ARCH=$(/usr/bin/uname -m)
+if [[ "$CLASSROOM_ARCH" == x86_64 ]] && [[ "$(/usr/sbin/sysctl -in sysctl.proc_translated 2>/dev/null || true)" == 1 ]]; then
+  CLASSROOM_ARCH=arm64
+fi
+CLASSROOM_EXPECTED=$(cat "$CLASSROOM_RESOURCES/architecture")
+if [[ "$CLASSROOM_ARCH" != "$CLASSROOM_EXPECTED" ]]; then
+  /usr/bin/osascript -e 'display alert "版本与这台 Mac 不匹配" message "Apple 芯片请选择 Apple Silicon 下载包，Intel 芯片请选择 Intel 下载包。" as critical'
+  exit 1
+fi
+exec "$CLASSROOM_RESOURCES/bin/node" "$CLASSROOM_RESOURCES/boot.mjs"

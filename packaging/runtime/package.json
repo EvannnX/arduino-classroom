@@ -1,0 +1,1 @@
+{"name":"arduino-classroom-runtime","version":"1.0.1","private":true,"type":"module","dependencies":{"express":"5.2.1","serialport":"13.0.0"}}

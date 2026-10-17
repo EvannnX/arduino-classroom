@@ -8,3 +8,7 @@ verification.txt
 .env
 .env.*
 !.env.example
+.release-cache/
+releases/
+__pycache__/
+*.pyc
